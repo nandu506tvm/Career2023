@@ -1,2 +1,2 @@
 # Career2023
-Personal GIT repo for side projects/Learning
+Personal GIT repo for side Learning
