@@ -1,7 +1,7 @@
 /*
  * Given two string list -> stringList, queries
  * Return a vector showing number of occurences of queries in stringList
- *
+ * Note: By default key Value is zero for 'int'
  * */
 
 #include <iostream>
