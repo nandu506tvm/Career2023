@@ -32,14 +32,7 @@ vector<int> findStrMatches(vector<string> stringList, vector<string> queries)
 
     for(int i=0; i< querySize; i++)
     {
-        if(matchDict.count(queries[i]) == 0)
-        {
-            result.push_back(0);
-        }
-        else
-        {
-            result.push_back(matchDict[queries[i]]);
-        }
+        result.push_back(matchDict[queries[i]]);
     }
     return result;
 }
