@@ -20,14 +20,7 @@ vector<int> findStrMatches(vector<string> stringList, vector<string> queries)
 
     for(int i=0; i <vecSize; i++) 
     {
-        if (matchDict.count(stringList[i]) == 0)
-        {
-            matchDict[stringList[i]] = 1;
-        }
-        else
-        {
-            matchDict.at(stringList[i]) ++;
-        }
+        matchDict[stringList[i]] ++;
     }
 
     // Map iterator
