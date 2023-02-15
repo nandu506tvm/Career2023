@@ -18,7 +18,7 @@ int superDigit(string S, int k)
 
     result *= k;
 
-    // This is needed to calculate if result has more than two digits. That is to add digits of 39
+    // This is needed to calculate if result has more than two digit.
     if (result%10 != result) {
         result = superDigit(to_string(result),1);
     }
