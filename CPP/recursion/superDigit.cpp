@@ -11,7 +11,7 @@ int superDigit(string S, int k)
     // Base condition 
     if (S.length() == 1 ) return stoi(S);
 
-    // Iterate throught the string and convert it into int
+    // Iterate through each char in string and convert it into int
     for (char &c: S) {
         result += c - 48;
     }
