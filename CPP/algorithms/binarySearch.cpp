@@ -3,6 +3,7 @@
 
 using namespace std;
 
+/* Divde and conquer algorithm*/
 bool binarySearch(vector <int> &vect, int leftIndex, int rightIndex, int key)
 {
     bool isElementPresent = false;
