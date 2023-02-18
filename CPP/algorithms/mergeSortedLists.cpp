@@ -20,16 +20,9 @@ void mergeSortedLists(vector <int>&list1, vector <int>&list2, vector<int>&finalA
             finalArr.push_back(list1[list1ptr]);
             list1ptr++;
         }
-        else if (list1[list1ptr] > list2[list2ptr])
-        {
-            finalArr.push_back(list2[list2ptr]);
-            list2ptr++;
-        }
         else
         {
-            finalArr.push_back(list1[list1ptr]);
             finalArr.push_back(list2[list2ptr]);
-            list1ptr++;
             list2ptr++;
         }
     }
