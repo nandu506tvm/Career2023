@@ -1,3 +1,5 @@
+/* Merge sort takes O(nlogn) time - Divide and conquer algorithm*/
+
 #include <iostream>
 
 using namespace std;
