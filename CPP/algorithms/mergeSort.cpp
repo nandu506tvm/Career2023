@@ -5,7 +5,9 @@
 using namespace std;
 
 /* Merging array takes O(n/2) + O(n/2) = O(n) time */
-/* Space complexity O(n) */
+/* Space complexity O(n) 
+ * Using two-pointer method. 
+ * */
 void merge_sorted_array(int A[], int low, int high, int mid)
 {
     int list1ptr = low;
