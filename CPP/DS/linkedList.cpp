@@ -114,6 +114,16 @@ Node* linkedList :: popBack() {
 	return this -> tail;
 }
 
+bool linkedList :: searchkey (Node *current_node, int key) {
+	// Base condition
+	if (current_node == NULL) return false;
+
+	// Check if key is found
+	if (current_node -> data == key) return true;
+
+	return searchkey (current_node -> next, key);
+}
+
 
 void linkedList :: deleteList (Node *current_node) {
 	if (current_node == NULL) {
@@ -141,6 +151,9 @@ int main ( int argc, char const *argv[] ) {
 	list.printList (head);
 	head = list.Insert (400,4);
 	list.printList (head);
+	cout << list.searchkey (head, 400) << endl;
+	cout << list.searchkey (head, 500) << endl;
+	cout << list.searchkey (head, 300) << endl;
 	list.popBack();
 	head = list.popFront();
 	list.popBack();

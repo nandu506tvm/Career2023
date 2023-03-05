@@ -25,6 +25,7 @@ class linkedList {
 	void printList (Node* current_node);
 	int findLength (Node* current_node);
 	void deleteList (Node *current_node);
+	bool searchkey (Node *current_node, int key);
 	Node* popFront();
 	Node* popBack ();
 };
