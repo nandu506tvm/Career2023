@@ -1,89 +1,151 @@
-/* When a class inherits another class, only public/protected variables/functions are shared between two classes.
- * Private variables/functions are only tied to that specific class.
- * The access-specifier mentioned while inheriting decides the visibility of those variables for subsequent inheritance.
- *
- */
-
+#include <fstream>
 #include <iostream>
+#include "linkedList.h"
 
 using namespace std;
 
-// Class declarations
-class Node 
-{
-    public:
-        int data;
-        Node *next = NULL;
-};
+/* we use dynamic memory allocation so that
+* memory wont be freed after function returns
+*/
+Node* linkedList :: pushFront (int data) {
+	Node *new_node = new Node (data);
 
-class LinkedList: private Node 
-{
-    Node *head = NULL;
-    public:
-        void addNode(int data);
-        void deleteList();
-        void printList();
-        void getListLength();
-};
+	/* List has no entry */
+	if ( head == NULL ) {
+		head = tail = new_node;
+		return head;
+	}
 
-// Class function definitions
-void LinkedList :: addNode(int data) 
-{
-    Node *newNode = new Node;
-    newNode -> data = data;
-    if (head == NULL) 
-    {
-        head = newNode;
-    }
-    else 
-    {
-        Node *temp = head;
-        while(temp->next != NULL) 
-        {
-            temp = temp -> next;
-        }
-        temp -> next = newNode;
-    }
+	/* List has entries */
+	new_node->next = head;
+	head = new_node;
+	return head;
 }
 
-void LinkedList :: printList() 
-{
-    Node *temp = head;
-    while (temp != NULL) 
-    {
-        cout << temp -> data << " ->\t";
-        temp = temp -> next;
-    }
-    cout << "NULL" << endl;
+Node* linkedList :: pushBack (int data) {
+	/* List has no entry */
+	if ( tail == NULL ) {
+		cout << "List is empty! " << endl;
+		return NULL;
+	}
+
+	/* List has entries */
+	Node *new_node = new Node ( data );
+	tail->next = new_node;
+	tail = new_node;
+	return tail;
 }
 
-void LinkedList :: deleteList()
-{
-    Node *temp = head;
-    while (head != NULL)
-    {
-        temp = head;
-        head = head -> next;
-        delete temp;
-    }
+Node* linkedList :: Insert (int data, int position) {
+	/* validate position */
+	if (position == 1)
+		return this -> pushFront (data);
+
+	else if (position >= findLength (this -> head) )
+		return this -> head;
+
+	/* For inserting elements in between */
+	Node *current_node = head;
+	Node *prev_node = head;
+	int count = 0;
+
+	while ( current_node != NULL ) {
+		count ++;
+
+		if ( count == position ) break;
+
+		prev_node = current_node;
+		current_node = current_node->next;
+	}
+
+	/* Insert the new element */
+	Node *new_node = new Node (data);
+	prev_node->next = new_node;
+	new_node->next = current_node;
+	return this -> head;
 }
 
-// Driver Code
-int main(int argc, char const *argv[])   
-{
-    if (argc > 1) printf("No arguments allowed !\n");
+void linkedList :: printList (Node *current_node ) {
+	if (current_node == NULL) {cout << endl; return;}
 
-    LinkedList *pList = new LinkedList();
-    pList -> addNode(5);
-    pList -> addNode(10);
-    pList -> addNode(15);
-    pList -> addNode(20);
-    pList -> addNode(1);
-    pList -> printList();
-    pList -> deleteList();
-    pList -> printList();
-    delete pList;
-
-    return 0;
+	cout << current_node->data << "\t";
+	printList (current_node -> next);
 }
 
+int linkedList :: findLength (Node *current_node) {
+	if (current_node == NULL) return 0;
+
+	return (1 + findLength (current_node->next) );
+}
+
+Node* linkedList :: popFront() {
+	if (this -> head == NULL) {
+		cout << "List is empty !" << endl;
+		return this -> head;
+	}
+
+	// TODO - if list had only one element, set tail to NULL
+	Node *current_head = this -> head;
+	this -> head = current_head->next;
+	delete current_head;
+	return this -> head;
+}
+
+Node* linkedList :: popBack() {
+	// List has no element
+	if (this -> head == NULL)
+		cout << "List is empty !" << endl;
+
+	else if (this -> head == this -> tail) {
+		delete tail;
+		this -> head = this -> tail = NULL;
+
+	} else {
+		Node *current_node = this -> head;
+
+		while (current_node -> next != tail)
+			current_node = current_node -> next;
+
+		delete tail;
+		current_node -> next = NULL;
+		this -> tail = current_node;
+	}
+
+	return this -> tail;
+}
+
+
+void linkedList :: deleteList (Node *current_node) {
+	if (current_node == NULL) {
+		this -> head = NULL;
+		this -> tail = NULL;
+		return;
+	}
+
+	deleteList (current_node->next);
+	delete current_node;
+}
+
+int main ( int argc, char const *argv[] ) {
+	/* Change stdin/stdout to a file */
+	freopen ( "input.txt", "r", stdin );
+	freopen ( "output.txt", "w", stdout );
+	linkedList list;
+	Node *head = NULL;
+	head = list.pushFront ( 10 );
+	head = list.pushFront ( 30 );
+	head = list.pushFront ( 50 );
+	list.pushBack ( 100 );
+	list.pushBack ( 200 );
+	head = list.Insert (300,1);
+	list.printList (head);
+	head = list.Insert (400,4);
+	list.printList (head);
+	list.popBack();
+	head = list.popFront();
+	list.popBack();
+	head = list.popFront();
+	list.printList (head);
+	list.deleteList (head);
+	return 0;
+}
