@@ -132,7 +132,21 @@ void LinkedList ::  Insert(int data, int pos, Node **head, Node **tail)
 
 void LinkedList :: reverseList (Node **head, Node **tail)
 {
-    return;
+    Node *current_node = *head;
+    Node *previous_node = NULL;
+    Node *next_node;
+    *tail = *head;
+    while(current_node != NULL)
+    {
+        // Store the next node
+        next_node = current_node->next;
+        // Point current_node->next to previous node
+        current_node->next = previous_node;
+        // increment current_node and previous_node
+        previous_node = current_node;
+        current_node = next_node;
+    }
+    *head = previous_node;
 }
 
 void LinkedList :: deleteList (Node **head, Node **tail) 
