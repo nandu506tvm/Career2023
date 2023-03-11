@@ -22,7 +22,7 @@ void LinkedList :: pushBack (int data, Node **head, Node **tail)
     if (*head == NULL) 
     {
         pushFront (data, head, tail);
-	return;
+	    return;
     }
 
     Node *new_node = new Node (data);
@@ -139,6 +139,29 @@ void LinkedList :: deleteList (Node **head, Node **tail)
     *head = *tail = NULL;
 }
 
+void LinkedList :: deleteNode (int pos, Node **head, Node **tail)
+{
+    if (*head == *tail)
+    {
+        delete *head;
+        *head = *tail = NULL;
+        return;
+    }
+
+    Node *current_node = *head;
+    Node *previous_node = *head;
+    int count = 1;
+    // walk and find position
+    while (count != pos)
+    {
+        previous_node = current_node;
+        current_node = current_node->next;
+        count ++;
+    }
+    previous_node->next = current_node->next;
+    delete current_node;
+}
+
 int main () 
 {
     LinkedList list;
@@ -159,6 +182,7 @@ int main ()
     list.Insert(890,8,&head,&tail);
     list.printList(head);
     list.deleteList(&head, &tail);
+    list.deleteNode(&head, &tail);
     list.printList (head);
 	
     return 0;
