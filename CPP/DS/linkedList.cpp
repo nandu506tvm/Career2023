@@ -52,11 +52,11 @@ int LinkedList :: findLength (Node *current_node)
     return (1 + findLength (current_node->next));
 }
 
-bool LinkedList :: searchkey (Node *current_node, int key) 
+bool LinkedList :: searchKey (Node *current_node, int key) 
 {
     if (current_node == NULL) return false;
     if (current_node -> data == key) return true;
-    return searchkey (current_node -> next, key);
+    return searchKey (current_node -> next, key);
 }
 
 void LinkedList :: popFront(Node **head, Node **tail) 
@@ -130,6 +130,11 @@ void LinkedList ::  Insert(int data, int pos, Node **head, Node **tail)
     }
 }
 
+void LinkedList :: reverseList (Node **head, Node **tail)
+{
+    return;
+}
+
 void LinkedList :: deleteList (Node **head, Node **tail) 
 {
     if (*head == NULL) return;
@@ -150,14 +155,16 @@ int main ()
     {
         cout << endl;
         cout << "======================" << endl;
-        cout << "1. pushFront" << endl;
-        cout << "2. pushBack" << endl;
-        cout << "3. popFront" << endl;
-        cout << "4. popBack" << endl;
-        cout << "5. Insert Element" << endl;
+        cout << "1. Push at Front" << endl;
+        cout << "2. Push at Back" << endl;
+        cout << "3. Pop from Front" << endl;
+        cout << "4. Pop from Back" << endl;
+        cout << "5. Insert Element at middle" << endl;
         cout << "6: Print List" << endl;
-        cout << "7: quit" << endl;
-        cout << "8: Clear screen" << endl;
+        cout << "7: Reverse List" << endl;
+        cout << "8: Search for Element" << endl;
+        cout << "9: Clear screen" << endl;
+        cout << "10: Quit" << endl;
         cout << "======================" << endl;
         cout << endl;
         cout << "Enter an option: ";
@@ -193,10 +200,18 @@ int main ()
                 list.printList(head);
                 break;
             case 7:
-                goto exit_loop;
+                list.reverseList(&head,&tail);
                 break;
             case 8:
+                cout << "Enter element to be searched: ";
+                cin >> data;
+                list.searchKey(head,data);
+                break;
+            case 9:
                 system("clear");
+                break;
+            case 10:
+                goto exit_loop;
                 break;
             default:
                 cout << "Invalid option" << endl;

@@ -18,8 +18,9 @@ class LinkedList
 	void printList (Node *current_node);
 	int findLength (Node *current_node);
 	void deleteList (Node **head, Node **tail);
+    void reverseList (Node **head, Node **tail);
     void deleteNode (int pos, Node **head, Node **tail);
-	bool searchkey (Node *current_node, int key);
+	bool searchKey (Node *current_node, int key);
 	void popFront (Node **head, Node **tail);
 	void popBack (Node **head, Node **tail);
 };
