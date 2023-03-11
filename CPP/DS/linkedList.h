@@ -1,33 +1,25 @@
-#ifndef LINKEDLIST
-#define LINKEDLIST
-
-class Node {
-  private:
+class Node 
+{
+  public:
 	int data;
 	Node *next;
 
 	// Initializer list
 	Node ( int data ) : data (data),next (NULL) {}
 
-	// Make linkedList a friend class to acess private members of 'Node'
-	friend class linkedList;
 };
 
-class linkedList {
-  private:
-	Node *head;
-	Node *tail;
+class LinkedList 
+{
   public:
-	linkedList() : head (NULL),tail (NULL) {}
-	Node* pushFront (int data);
-	Node* pushBack (int data);
-	Node* Insert (int data, int position);
-	void printList (Node* current_node);
-	int findLength (Node* current_node);
-	void deleteList (Node *current_node);
+	void pushFront (int data, Node **head, Node **tail);
+	void pushBack (int data, Node **head, Node **tail );
+	void Insert (int data, int pos, Node **head, Node **tail);
+	void printList (Node *current_node);
+	int findLength (Node *current_node);
+	void deleteList (Node **head, Node **tail);
 	bool searchkey (Node *current_node, int key);
-	Node* popFront();
-	Node* popBack ();
+	void popFront (Node **head, Node **tail);
+	void popBack (Node **head, Node **tail);
 };
 
-#endif

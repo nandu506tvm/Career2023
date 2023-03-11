@@ -1,164 +1,165 @@
-#include <fstream>
 #include <iostream>
-#include "linkedList.h"
+#include "LinkedList.h"
 
 using namespace std;
 
-/* we use dynamic memory allocation so that
-* memory wont be freed after function returns
-*/
-Node* linkedList :: pushFront (int data) {
+void LinkedList :: pushFront (int data, Node **head, Node **tail) 
+{
 	Node *new_node = new Node (data);
 
-	/* List has no entry */
-	if ( head == NULL ) {
-		head = tail = new_node;
-		return head;
+	if (*head == NULL) 
+    {
+		*head = new_node;
+		*tail = new_node;
+		return;
 	}
 
-	/* List has entries */
-	new_node->next = head;
-	head = new_node;
-	return head;
+	new_node->next = *head;
+	*head = new_node;
 }
 
-Node* linkedList :: pushBack (int data) {
-	/* List has no entry */
-	if ( tail == NULL ) {
-		cout << "List is empty! " << endl;
-		return NULL;
+void LinkedList :: pushBack (int data, Node **head, Node **tail) 
+{
+	if (*head == NULL) 
+    {
+		pushFront (data, head, tail);
+		return;
 	}
 
-	/* List has entries */
-	Node *new_node = new Node ( data );
-	tail->next = new_node;
-	tail = new_node;
-	return tail;
-}
-
-Node* linkedList :: Insert (int data, int position) {
-	/* validate position */
-	if (position == 1)
-		return this -> pushFront (data);
-
-	else if (position >= findLength (this -> head) )
-		return this -> head;
-
-	/* For inserting elements in between */
-	Node *current_node = head;
-	Node *prev_node = head;
-	int count = 0;
-
-	while ( current_node != NULL ) {
-		count ++;
-
-		if ( count == position ) break;
-
-		prev_node = current_node;
-		current_node = current_node->next;
-	}
-
-	/* Insert the new element */
 	Node *new_node = new Node (data);
-	prev_node->next = new_node;
-	new_node->next = current_node;
-	return this -> head;
+
+    // Make the existing tail node point to new node
+	(*tail)-> next = new_node;
+	*tail = new_node;
 }
 
-void linkedList :: printList (Node *current_node ) {
-	if (current_node == NULL) {cout << endl; return;}
+void LinkedList :: printList (Node *current_node) 
+{
+	if (current_node == NULL) 
+    {
+        cout << endl;
+        return;
+    }
 
 	cout << current_node->data << "\t";
 	printList (current_node -> next);
 }
 
-int linkedList :: findLength (Node *current_node) {
+int LinkedList :: findLength (Node *current_node) 
+{
 	if (current_node == NULL) return 0;
 
-	return (1 + findLength (current_node->next) );
+	return (1 + findLength (current_node->next));
 }
 
-Node* linkedList :: popFront() {
-	if (this -> head == NULL) {
-		cout << "List is empty !" << endl;
-		return this -> head;
-	}
-
-	// TODO - if list had only one element, set tail to NULL
-	Node *current_head = this -> head;
-	this -> head = current_head->next;
-	delete current_head;
-	return this -> head;
-}
-
-Node* linkedList :: popBack() {
-	// List has no element
-	if (this -> head == NULL)
-		cout << "List is empty !" << endl;
-
-	else if (this -> head == this -> tail) {
-		delete tail;
-		this -> head = this -> tail = NULL;
-
-	} else {
-		Node *current_node = this -> head;
-
-		while (current_node -> next != tail)
-			current_node = current_node -> next;
-
-		delete tail;
-		current_node -> next = NULL;
-		this -> tail = current_node;
-	}
-
-	return this -> tail;
-}
-
-bool linkedList :: searchkey (Node *current_node, int key) {
-	// Base condition
+bool LinkedList :: searchkey (Node *current_node, int key) 
+{
 	if (current_node == NULL) return false;
-
-	// Check if key is found
 	if (current_node -> data == key) return true;
-
 	return searchkey (current_node -> next, key);
 }
 
+void LinkedList :: popFront(Node **head, Node **tail) 
+{
+    if (*head == *tail)
+    {
+        delete *head;
+        *tail = *head = NULL;
+        return;
+    }
 
-void linkedList :: deleteList (Node *current_node) {
-	if (current_node == NULL) {
-		this -> head = NULL;
-		this -> tail = NULL;
-		return;
-	}
-
-	deleteList (current_node->next);
-	delete current_node;
+    Node *current_head_next = (*head)->next;
+    delete *head;
+    *head = current_head_next;
+   
 }
 
-int main ( int argc, char const *argv[] ) {
-	/* Change stdin/stdout to a file */
-	freopen ( "input.txt", "r", stdin );
-	freopen ( "output.txt", "w", stdout );
-	linkedList list;
+void LinkedList :: popBack(Node **head, Node **tail)
+{
+    if (*head == *tail) 
+    {
+        delete *tail;
+        *head = *tail = NULL;
+        return;
+    }
+
+    Node *current_node = *head;
+    while (current_node->next != *tail)
+    {
+        current_node = current_node->next;
+    }
+    delete *tail;
+
+    // Update tail & set current_node->next to NULL
+    *tail = current_node;
+    (*tail)->next = NULL;
+
+}
+
+void LinkedList ::  Insert(int data, int pos, Node **head, Node **tail)
+{
+    int length = findLength(*head);
+
+    if (pos < 1)
+    {
+        cout << "Invalid position" << endl;
+    }
+    else if (pos==1 || *head == NULL)
+    {
+        pushFront(data,head,tail);
+    }
+    else if (pos > length)
+    {
+        pushBack(data,head,tail);
+    }
+    else
+    {
+        int count = 1;
+        Node *current_node = *head;
+        Node *previous_node = *head;
+        // walk and find position
+        while (count != pos)
+        {
+            previous_node = current_node;
+            current_node = current_node->next;
+            count++;
+        }
+        Node *new_node = new Node(data);
+        previous_node->next = new_node;
+        new_node -> next = current_node;
+    }
+}
+
+void LinkedList :: deleteList (Node **head, Node **tail) 
+{
+    if (*head == NULL) return;
+
+    deleteList (&(*head)->next, tail);
+    delete *head;
+
+    *head = *tail = NULL;
+}
+
+int main () 
+{
+	LinkedList list;
 	Node *head = NULL;
-	head = list.pushFront ( 10 );
-	head = list.pushFront ( 30 );
-	head = list.pushFront ( 50 );
-	list.pushBack ( 100 );
-	list.pushBack ( 200 );
-	head = list.Insert (300,1);
+	Node *tail = NULL;
+	list.pushFront (300,&head, &tail);
+	list.pushFront (50, &head, &tail);
+	list.pushBack (700, &head, &tail);
+	list.pushBack (800, &head, &tail);
+    list.pushBack (1000, &head, &tail);
 	list.printList (head);
-	head = list.Insert (400,4);
-	list.printList (head);
-	cout << list.searchkey (head, 400) << endl;
-	cout << list.searchkey (head, 500) << endl;
-	cout << list.searchkey (head, 300) << endl;
-	list.popBack();
-	head = list.popFront();
-	list.popBack();
-	head = list.popFront();
-	list.printList (head);
-	list.deleteList (head);
+    list.popFront(&head, &tail);
+    list.popFront(&head, &tail);
+    list.printList(head);
+    list.popBack(&head, &tail);
+    list.printList(head);
+    list.Insert(1,2,&head,&tail);
+    list.Insert(890,8,&head,&tail);
+    list.printList(head);
+    list.deleteList(&head, &tail);
+    list.printList (head);
 	return 0;
 }
