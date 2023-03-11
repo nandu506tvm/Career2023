@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "LinkedList.h"
 
 using namespace std;
@@ -139,51 +140,71 @@ void LinkedList :: deleteList (Node **head, Node **tail)
     *head = *tail = NULL;
 }
 
-void LinkedList :: deleteNode (int pos, Node **head, Node **tail)
-{
-    if (*head == *tail)
-    {
-        delete *head;
-        *head = *tail = NULL;
-        return;
-    }
-
-    Node *current_node = *head;
-    Node *previous_node = *head;
-    int count = 1;
-    // walk and find position
-    while (count != pos)
-    {
-        previous_node = current_node;
-        current_node = current_node->next;
-        count ++;
-    }
-    previous_node->next = current_node->next;
-    delete current_node;
-}
-
 int main () 
 {
     LinkedList list;
     Node *head = NULL;
     Node *tail = NULL;
-    list.pushFront (300,&head, &tail);
-    list.pushFront (50, &head, &tail);
-    list.pushBack (700, &head, &tail);
-    list.pushBack (800, &head, &tail);
-    list.pushBack (1000, &head, &tail);
-    list.printList (head);
-    list.popFront(&head, &tail);
-    list.popFront(&head, &tail);
-    list.printList(head);
-    list.popBack(&head, &tail);
-    list.printList(head);
-    list.Insert(1,2,&head,&tail);
-    list.Insert(890,8,&head,&tail);
-    list.printList(head);
-    list.deleteList(&head, &tail);
-    list.deleteNode(&head, &tail);
-    list.printList (head);
+    int selection,data,position;
+    while(true)
+    {
+        cout << endl;
+        cout << "======================" << endl;
+        cout << "1. pushFront" << endl;
+        cout << "2. pushBack" << endl;
+        cout << "3. popFront" << endl;
+        cout << "4. popBack" << endl;
+        cout << "5. Insert Element" << endl;
+        cout << "6: Print List" << endl;
+        cout << "7: quit" << endl;
+        cout << "8: Clear screen" << endl;
+        cout << "======================" << endl;
+        cout << endl;
+        cout << "Enter an option: ";
+        cin >> selection;
+
+        switch(selection)
+        {
+            case 1:
+                cout << "Enter data: ";
+                cin >> data;
+                list.pushFront(data,&head,&tail);
+                break;
+            case 2:
+                cout << "Enter data: ";
+                cin >> data;
+                list.pushBack(data,&head,&tail);
+                break;
+            case 3:
+                list.popFront(&head,&tail);
+                break;
+            case 4:
+                list.popBack(&head,&tail);
+                break;
+            case 5:
+                cout << "Enter data: ";
+                cin >> data;
+                cout << "Enter position to insert: ";
+                cin >> position;
+                list.Insert(data,position,&head,&tail);
+                break;
+            case 6:
+                cout << endl;
+                list.printList(head);
+                break;
+            case 7:
+                goto exit_loop;
+                break;
+            case 8:
+                system("clear");
+                break;
+            default:
+                cout << "Invalid option" << endl;
+                goto exit_loop;
+                break;
+        }
+    }
+    exit_loop:list.deleteList(&head, &tail);
 	
     return 0;
 }
