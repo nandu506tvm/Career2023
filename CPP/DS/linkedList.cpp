@@ -6,7 +6,6 @@ using namespace std;
 void LinkedList :: pushFront (int data, Node **head, Node **tail) 
 {
 	Node *new_node = new Node (data);
-
 	if (*head == NULL) 
     {
 		*head = new_node;
