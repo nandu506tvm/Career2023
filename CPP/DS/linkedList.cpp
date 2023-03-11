@@ -8,9 +8,9 @@ void LinkedList :: pushFront (int data, Node **head, Node **tail)
     Node *new_node = new Node (data);
     if (*head == NULL) 
     {
-	*head = new_node;
-	*tail = new_node;
-	return;
+	    *head = new_node;
+	    *tail = new_node;
+	    return;
     }
 
     new_node->next = *head;
