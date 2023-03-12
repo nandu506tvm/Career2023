@@ -55,7 +55,11 @@ int LinkedList :: findLength (Node *current_node)
 bool LinkedList :: searchKey (Node *current_node, int key) 
 {
     if (current_node == NULL) return false;
-    if (current_node -> data == key) return true;
+    if (current_node -> data == key)
+    {
+        cout << "Key exist in List" << endl;
+        return true;
+    }
     return searchKey (current_node -> next, key);
 }
 
