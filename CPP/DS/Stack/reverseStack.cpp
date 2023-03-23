@@ -23,12 +23,25 @@ void insertAtBottom (stack<int> &stck, int data)
     stck.push(temp);
 }
 
+// Time complexity - O(N^2)
+// Space complexity - O(N) 
 void reverseStack (stack<int> &stck)
 {
+    // Base condition
     if (stck.empty())
     {
         return;
     }
+
+    // Think in terms of PMI
+    int data = stck.top();
+    stck.pop();
+
+    // call recursion till stack is empty
+    reverseStack(stck);
+
+    // Now insert the last element at bottom
+    insertAtBottom(stck,data);
 
 }
 
