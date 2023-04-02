@@ -127,6 +127,8 @@ int largestRectArea(vector<int> hist)
     // breadth = (next_lesser_index - prev_lesser_index)-1 
     for (int index=0; index<length; index++)
     {
+        // If next lesser is not present, then take the entire right hand side i.e the length
+        // Else area will be computed as negative, since -1 is present
         if (next_lesser_index_list[index] == -1)
         {
             next_lesser_index_list[index] = length;
@@ -145,7 +147,7 @@ int largestRectArea(vector<int> hist)
 
 int main(int argc, char const *argv[]) 
 {
-    vector<int> list = {2,4};
+    vector<int> list = {2,1,5,6,2,3};
     cout << "Largest rectangle area brute force: " << bruteForceSoln(list) << endl;
     cout << "Largest rectangle area optimized: " << largestRectArea(list) << endl;
 
