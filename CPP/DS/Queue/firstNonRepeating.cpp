@@ -31,7 +31,7 @@ vector<char> firstnonrepeating(vector<char> str)
             que.push(element);
         }
 
-        // Pop the front of Queue, if character count is greater than 1
+        // Character with occurence greater than 1 shouldn't exist in Queue
         while((char_count[que.front()] > 1) and (!que.empty()))
         {
             que.pop();
@@ -42,7 +42,7 @@ vector<char> firstnonrepeating(vector<char> str)
         {
             result.push_back(que.front());
         }
-        // If queue is empty, then update the result as '0'
+        // If queue is empty, then there is non-repeating char
         else
         {
             result.push_back('0');
