@@ -17,6 +17,7 @@ vector<vector<int>> printPascal(int num)
             inner_vector[index] = result[row-1][index-1] + result[row-1][index];
         }
 
+        // see here we are pushing back a vector
         result.push_back(inner_vector);
 
     }
