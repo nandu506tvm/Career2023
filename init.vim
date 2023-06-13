@@ -26,19 +26,19 @@ filetype plugin indent on
 syntax on
 set noswapfile
 set number
-set tabstop=4 softtabstop=4
 " set colorcolumn=120"
-set shiftwidth=4
 set expandtab
+set tabstop=2
+set shiftwidth=2
 set smartindent
 set noerrorbells
 set fileformat=unix
 set ignorecase
 set termguicolors
-colo gruvbox
+colo papercolor
 " Set themes
 set background=dark
-colorscheme dracula
+"colorscheme gruvbox
 
 " Status Bar
 set cwh=1
@@ -68,8 +68,8 @@ let g:pydocstring_formatter = 'sphinx'
 " let g:airline_theme='simple'
 
 " NerdTree
-let NERDTreeWinSize = 23
-autocmd VimEnter * NERDTree | wincmd p
+"let NERDTreeWinSize = 23
+"autocmd VimEnter * NERDTree | wincmd p
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
@@ -78,5 +78,5 @@ set clipboard=unnamedplus
 
 " CPP compilation/cleanup
 set autowrite
-autocmd filetype cpp nnoremap <C-b> :w <bar> !g++ -w -std=c++17 % -o %:r <CR>
-autocmd filetype cpp nnoremap <C-c> : !rm %:r<CR>
+autocmd filetype cpp nnoremap <C-c> :w <bar> !g++ -Wall -W -std=c++17 % -o %:r <CR>
+autocmd filetype cpp nnoremap <C-k> : !rm %:r<CR>
