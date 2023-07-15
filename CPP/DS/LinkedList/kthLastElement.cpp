@@ -1,21 +1,20 @@
 #include <iostream>
+
 #include "LinkedList.h"
 
 using namespace std;
 
-int kthLastElement(Node *head,int k){
+int kthLastElement(Node *head, int k) {
     Node *slow = head;
     Node *fast = head;
     int count = 1;
     // Move 'fast' pointer (K-1) times to right
-    while(count != k)
-    {
+    while (count != k) {
         fast = fast->next;
-        count ++;
+        count++;
     }
     // Now move fast/slow pointer till next of fast is NULL
-    while(fast->next != NULL)
-    {
+    while (fast->next != NULL) {
         slow = slow->next;
         fast = fast->next;
     }
@@ -23,10 +22,4 @@ int kthLastElement(Node *head,int k){
     return slow->data;
 }
 
-
-int main(int argc, char const *argv[]) 
-{
-    
-    return 0;
-}
-
+int main(int argc, char const *argv[]) { return 0; }

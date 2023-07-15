@@ -10,16 +10,17 @@ void GenerateSubSet(vector<int> vect, vector<vector<int>> &result) {
 
     // This is equivalent to doing (2^n)
     // This will give us the total number of subsets
-    int subset_count = 1<<arr_size;
+    int subset_count = 1 << arr_size;
 
-    // Outer loop for 2^N subset generation 
-    for (int mask=0; mask < subset_count; mask++) {
+    // Outer loop for 2^N subset generation
+    for (int mask = 0; mask < subset_count; mask++) {
         vector<int> subset;
-        
+
         // walk bit by bit through the 'mask' and see what all bits are set
-        for (int array_index=0; array_index<arr_size; array_index++) {
-            // If the bit is set, then push the element at that particular index to subset.
-            if (mask & (1<<array_index)) {
+        for (int array_index = 0; array_index < arr_size; array_index++) {
+            // If the bit is set, then push the element at that particular index
+            // to subset.
+            if (mask & (1 << array_index)) {
                 subset.push_back(vect[array_index]);
             }
         }
@@ -28,13 +29,13 @@ void GenerateSubSet(vector<int> vect, vector<vector<int>> &result) {
 }
 
 int main() {
-    vector <int> vect = {1,2,3,4,5};
+    vector<int> vect = {1, 2, 3, 4, 5};
     vector<vector<int>> result;
-    GenerateSubSet(vect,result);
+    GenerateSubSet(vect, result);
 
     // Print the result
-    for (auto element: result) {
-        for (auto ele: element) {
+    for (auto element : result) {
+        for (auto ele : element) {
             cout << ele << "\t";
         }
         cout << endl;
@@ -42,4 +43,3 @@ int main() {
 
     return 0;
 }
-

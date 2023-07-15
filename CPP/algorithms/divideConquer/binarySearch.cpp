@@ -4,36 +4,34 @@
 using namespace std;
 
 /* Divde and conquer algorithm*/
-bool binarySearch(vector <int> &vect, int leftIndex, int rightIndex, int key)
-{
+bool binarySearch(vector<int> &vect, int leftIndex, int rightIndex, int key) {
     bool isElementPresent = false;
 
-    //Base condition
+    // Base condition
     if (leftIndex > rightIndex) return false;
 
-    int mid = (leftIndex + rightIndex)/2;
+    int mid = (leftIndex + rightIndex) / 2;
 
     // Check if key is present at mid
-    if (vect[mid] == key ) {return true;}
+    if (vect[mid] == key) {
+        return true;
+    }
 
     // Check left array if key is less than value at index 'mid'
-    else if (key < vect[mid])
-    {
-        isElementPresent = binarySearch(vect, leftIndex, mid-1, key);
+    else if (key < vect[mid]) {
+        isElementPresent = binarySearch(vect, leftIndex, mid - 1, key);
     }
 
     // Else check right array
-    else
-    {
-        isElementPresent = binarySearch(vect, mid+1, rightIndex, key);
+    else {
+        isElementPresent = binarySearch(vect, mid + 1, rightIndex, key);
     }
 
     return isElementPresent;
 }
 
 int main(int argc, char const *argv[]) {
-
-    vector <int> vect;
+    vector<int> vect;
     int key = 0;
 
     vect.push_back(10);
@@ -47,16 +45,12 @@ int main(int argc, char const *argv[]) {
     cout << "Enter element to be searched: ";
     cin >> key;
 
-    bool isElementPresent = binarySearch(vect, 0,vect.size(), key);
-    if (isElementPresent) 
-    {
+    bool isElementPresent = binarySearch(vect, 0, vect.size(), key);
+    if (isElementPresent) {
         cout << "Element Found" << endl;
-    }
-    else
-    {
+    } else {
         cout << "Failed to find element" << endl;
     }
 
     return 0;
 }
-

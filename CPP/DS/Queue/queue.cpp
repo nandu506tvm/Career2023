@@ -1,4 +1,4 @@
-// Implelment queue using circular array 
+// Implelment queue using circular array
 
 #include <iostream>
 
@@ -6,59 +6,45 @@
 
 using namespace std;
 
-class Queue
-{
-    private:
-        int arr[MAX_SIZE] = {0};
-        int current_size = 0;
-        int front = -1;
-        int rear = -1;
-    public:
-        bool isQueueFull()
-        {
-            return current_size == MAX_SIZE;
+class Queue {
+   private:
+    int arr[MAX_SIZE] = {0};
+    int current_size = 0;
+    int front = -1;
+    int rear = -1;
+
+   public:
+    bool isQueueFull() { return current_size == MAX_SIZE; }
+    bool isEmpty() { return current_size == 0; }
+    void enqueue(int data) {
+        if (isQueueFull()) {
+            cout << "Queue is full" << endl;
+            return;
         }
-        bool isEmpty()
-        {
-            return current_size == 0;
+        if (isEmpty()) {
+            front = 0;
         }
-        void enqueue(int data)
-        {
-            if (isQueueFull())
-            {
-                cout << "Queue is full" << endl;
-                return;
-            }
-            if (isEmpty())
-            {
-                front = 0;
-            }
-            rear = (rear+1) % MAX_SIZE;
-            arr[rear] = data;
-            current_size++;
+        rear = (rear + 1) % MAX_SIZE;
+        arr[rear] = data;
+        current_size++;
+    }
+    void dequeue() {
+        if (isEmpty()) {
+            return;
         }
-        void dequeue()
-        {
-            if (isEmpty())
-            {
-                return;
-            }
-            arr[front] = -1;
-            current_size--;
-            front = (front+1) % MAX_SIZE;
+        arr[front] = -1;
+        current_size--;
+        front = (front + 1) % MAX_SIZE;
+    }
+    void printArray() {
+        for (int i = 0; i < MAX_SIZE; i++) {
+            cout << arr[i] << "\t";
         }
-        void printArray()
-        {
-            for (int i=0; i<MAX_SIZE; i++)
-            {
-                cout << arr[i] << "\t";
-            }
-            cout << endl;
-        }
+        cout << endl;
+    }
 };
 
-int main(int argc, char const *argv[]) 
-{
+int main(int argc, char const *argv[]) {
     Queue q1;
     q1.enqueue(1);
     q1.enqueue(10);
@@ -83,4 +69,3 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-

@@ -3,25 +3,21 @@
 
 using namespace std;
 
-
-queue<int> interLeave(queue<int> q)
-{
+queue<int> interLeave(queue<int> q) {
     queue<int> result;
     queue<int> temp;
-    int middle = q.size()/2;
+    int middle = q.size() / 2;
     int count = 1;
 
     // Move first set of elements till middle to another queue
-    while(count <= middle)
-    {
+    while (count <= middle) {
         temp.push(q.front());
         q.pop();
         count++;
     }
 
     // Now populate the result queue, adding elements from both queue
-    while((!q.empty()) and (!temp.empty()))
-    {
+    while ((!q.empty()) and (!temp.empty())) {
         result.push(temp.front());
         result.push(q.front());
 
@@ -31,8 +27,7 @@ queue<int> interLeave(queue<int> q)
     return result;
 }
 
-int main(int argc, char const *argv[]) 
-{
+int main(int argc, char const *argv[]) {
     queue<int> q1;
     q1.push(11);
     q1.push(12);
@@ -45,10 +40,9 @@ int main(int argc, char const *argv[])
     q1.push(19);
     q1.push(20);
 
-    queue<int>result = interLeave(q1);
+    queue<int> result = interLeave(q1);
 
-    while(!result.empty())
-    {
+    while (!result.empty()) {
         cout << result.front() << "\t";
         result.pop();
     }
@@ -56,4 +50,3 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-

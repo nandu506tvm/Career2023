@@ -3,9 +3,9 @@
 using namespace std;
 
 /* A given number N will have atmost Log (N) number of set bits
- * For eg: binary of 5 is 000101. Here number of set bits is 2 which is < log (5)
+ * For eg: binary of 5 is 000101. Here number of set bits is 2 which is < log
+ * (5)
  * */
-
 
 // Fast exponentiation is a way to calculate the power of a number say 5^2
 // Since we have atmost log N bits in exponent, this algorithm take O(Log N)
@@ -29,9 +29,7 @@ int FastExponentiation(int base, int exponent) {
 }
 
 int main() {
-
-    cout << FastExponentiation(5,3) << endl;
+    cout << FastExponentiation(5, 3) << endl;
 
     return 0;
 }
-

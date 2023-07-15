@@ -3,29 +3,23 @@
 
 using namespace std;
 
-void popStack(stack<char> &stck)
-{
-    // POP till we encounter opening paranthesis 
-    while(!stck.empty() and stck.top() != '(')
-    {
+void popStack(stack<char> &stck) {
+    // POP till we encounter opening paranthesis
+    while (!stck.empty() and stck.top() != '(') {
         stck.pop();
     }
     // POP the opening paranthesis also
-    if (stck.top() == '(')
-    {
+    if (stck.top() == '(') {
         stck.pop();
     }
 }
 
-bool duplicateParentheses(string str)
-{
-    stack<char> stck; 
+bool duplicateParentheses(string str) {
+    stack<char> stck;
     int length = str.length();
 
-    for (char ch: str)
-    {
-        switch(ch)
-        {
+    for (char ch : str) {
+        switch (ch) {
             case '(':
                 stck.push(ch);
                 break;
@@ -44,11 +38,9 @@ bool duplicateParentheses(string str)
     return false;
 }
 
-int main(int argc, char const *argv[]) 
-{
+int main(int argc, char const *argv[]) {
     string str = "((a+(b))+(c+d))";
     cout << duplicateParentheses(str) << endl;
-    
+
     return 0;
 }
-

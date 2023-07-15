@@ -3,9 +3,7 @@
 
 using namespace std;
 
-int main(int argc, char const *argv[]) 
-{
-
+int main(int argc, char const *argv[]) {
     queue<int> que;
     que.push(10);
     que.push(20);
@@ -13,13 +11,11 @@ int main(int argc, char const *argv[])
     que.push(40);
     que.push(50);
 
-    while(!que.empty())
-    {
+    while (!que.empty()) {
         cout << que.front() << "\t";
         que.pop();
     }
     cout << endl;
-    
+
     return 0;
 }
-

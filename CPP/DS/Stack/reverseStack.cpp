@@ -4,11 +4,9 @@
 using namespace std;
 
 /* Inserts data at bottom of stack recursively */
-void insertAtBottom (stack<int> &stck, int data)
-{
+void insertAtBottom(stack<int> &stck, int data) {
     // Base condition
-    if (stck.empty())
-    {
+    if (stck.empty()) {
         stck.push(data);
         return;
     }
@@ -24,12 +22,10 @@ void insertAtBottom (stack<int> &stck, int data)
 }
 
 // Time complexity - O(N^2)
-// Space complexity - O(N) 
-void reverseStack (stack<int> &stck)
-{
+// Space complexity - O(N)
+void reverseStack(stack<int> &stck) {
     // Base condition
-    if (stck.empty())
-    {
+    if (stck.empty()) {
         return;
     }
 
@@ -41,14 +37,11 @@ void reverseStack (stack<int> &stck)
     reverseStack(stck);
 
     // Now insert the last element at bottom
-    insertAtBottom(stck,data);
-
+    insertAtBottom(stck, data);
 }
 
-void printStack (stack<int> stck)
-{
-    if (stck.empty())
-    {
+void printStack(stack<int> stck) {
+    if (stck.empty()) {
         cout << endl;
         return;
     }
@@ -58,8 +51,7 @@ void printStack (stack<int> stck)
     printStack(stck);
 }
 
-int main(int argc, char const *argv[]) 
-{
+int main(int argc, char const *argv[]) {
     stack<int> stck;
     stck.push(5);
     stck.push(6);
@@ -75,7 +67,6 @@ int main(int argc, char const *argv[])
     // Reverse the stack and print
     reverseStack(stck);
     printStack(stck);
-    
+
     return 0;
 }
-

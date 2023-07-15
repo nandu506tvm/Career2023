@@ -4,15 +4,14 @@
 using namespace std;
 
 vector<int> rotateLeft(int d, vector<int> arr) {
-    vector <int> revArray = arr;
+    vector<int> revArray = arr;
     int temp = 0;
     unsigned int vecSize = arr.size();
-    for (int i=0; i < vecSize; i++) {
-        temp = i -d;
-        if (temp <0) {
+    for (int i = 0; i < vecSize; i++) {
+        temp = i - d;
+        if (temp < 0) {
             revArray[vecSize + temp] = arr[i];
-        }
-        else {
+        } else {
             revArray[temp] = arr[i];
         }
     }
@@ -20,7 +19,6 @@ vector<int> rotateLeft(int d, vector<int> arr) {
 }
 
 int main(int argc, char const *argv[]) {
-
     vector<int> arr;
     int rotateCount = 4;
 
@@ -32,12 +30,10 @@ int main(int argc, char const *argv[]) {
 
     vector<int> result = rotateLeft(rotateCount, arr);
 
-    for (int i=0; i< 5; i++)
-    {
+    for (int i = 0; i < 5; i++) {
         cout << result[i] << "\t";
     }
     cout << endl;
 
     return 0;
 }
-

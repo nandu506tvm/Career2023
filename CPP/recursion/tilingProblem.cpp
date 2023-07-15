@@ -7,17 +7,14 @@ using namespace std;
 // we have to cover the floor with tiles
 // Find the number of ways we can do this,
 // Tiles can be placed in both horizontal and vertical manner
-int tilingProblem(int n,int m) {
-    return n+m;
-}
+int tilingProblem(int n, int m) { return n + m; }
 
 int main() {
-    int n,m=0;
+    int n, m = 0;
 
-    cout << "Enter n,m: " ;
+    cout << "Enter n,m: ";
     cin >> n >> m;
 
-    cout << tilingProblem(n,m) << endl;
+    cout << tilingProblem(n, m) << endl;
     return 0;
 }
-

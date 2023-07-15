@@ -3,11 +3,10 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-
     int var = 10;
     int *pVar = &var;
     int **ppVar = &pVar;
-  
+
     cout << "Value at &var: " << &var << endl;
     cout << "Value at pVar : " << pVar << endl;
     cout << "Value at *pVar : " << *pVar << endl;
@@ -16,7 +15,6 @@ int main(int argc, char const *argv[]) {
     cout << "Value at ppVar " << ppVar << endl;
     cout << "Value at *ppVar " << *ppVar << endl;
     cout << "Value at **ppVar " << **ppVar << endl;
-    
+
     return 0;
 }
-

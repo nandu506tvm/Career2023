@@ -6,15 +6,14 @@ using namespace std;
 int ModularExponentiation(int base, int exponent, int mod) {
     int result = 1;
 
-    //Code for fast exponentiation
-    while(exponent>0) {
-
+    // Code for fast exponentiation
+    while (exponent > 0) {
         // LSB is set
-        if (exponent&1) {
-            result = (result*base) % mod;
+        if (exponent & 1) {
+            result = (result * base) % mod;
         }
         // Square the base and then take the mod for next iteration
-        base = (base*base) % mod;
+        base = (base * base) % mod;
         // Left shift the exponent
         exponent >>= 1;
     }
@@ -22,7 +21,6 @@ int ModularExponentiation(int base, int exponent, int mod) {
 }
 
 int main() {
-    cout << ModularExponentiation(2,223,353) << endl;
+    cout << ModularExponentiation(2, 223, 353) << endl;
     return 0;
 }
-

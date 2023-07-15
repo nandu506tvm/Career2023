@@ -1,13 +1,11 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <vector>
 
 using namespace std;
 
-int main(int argc, char const *argv[]) 
-{
-
-    vector<int> arr = {10,9,5,8,3,2,11,101,1};
+int main(int argc, char const *argv[]) {
+    vector<int> arr = {10, 9, 5, 8, 3, 2, 11, 101, 1};
 
     // Inbuilt sorting algorithm uses 'introsort'
     // argument 1 -> pointer from where sorting should start in array.
@@ -15,12 +13,10 @@ int main(int argc, char const *argv[])
     sort(arr.begin(), arr.end());
 
     // Print the array
-    for (int element: arr)
-    {
+    for (int element : arr) {
         cout << element << "\t";
     }
     cout << endl;
-    
+
     return 0;
 }
-

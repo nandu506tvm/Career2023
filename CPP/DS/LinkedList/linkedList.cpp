@@ -1,72 +1,61 @@
-#include <iostream>
-
 #include "LinkedList.h"
+
+#include <iostream>
 
 using namespace std;
 
-void LinkedList :: pushFront (int data, Node **head, Node **tail) 
-{
-    Node *new_node = new Node (data);
-    if (*head == NULL) 
-    {
-	    *head = new_node;
-	    *tail = new_node;
-	    return;
+void LinkedList ::pushFront(int data, Node **head, Node **tail) {
+    Node *new_node = new Node(data);
+    if (*head == NULL) {
+        *head = new_node;
+        *tail = new_node;
+        return;
     }
 
     new_node->next = *head;
     *head = new_node;
 }
 
-void LinkedList :: pushBack (int data, Node **head, Node **tail) 
-{
-    if (*head == NULL) 
-    {
-        pushFront (data, head, tail);
-	    return;
+void LinkedList ::pushBack(int data, Node **head, Node **tail) {
+    if (*head == NULL) {
+        pushFront(data, head, tail);
+        return;
     }
 
-    Node *new_node = new Node (data);
+    Node *new_node = new Node(data);
 
     // Make the existing tail node point to new node
-    (*tail)-> next = new_node;
+    (*tail)->next = new_node;
     *tail = new_node;
 }
 
-void LinkedList :: printList (Node *current_node) 
-{
-    if (current_node == NULL) 
-    {
+void LinkedList ::printList(Node *current_node) {
+    if (current_node == NULL) {
         cout << endl;
         return;
     }
 
     cout << current_node->data << "\t";
-    printList (current_node -> next);
+    printList(current_node->next);
 }
 
-int LinkedList :: findLength (Node *current_node) 
-{
+int LinkedList ::findLength(Node *current_node) {
     if (current_node == NULL) return 0;
 
-    return (1 + findLength (current_node->next));
+    return (1 + findLength(current_node->next));
 }
 
-bool LinkedList :: searchKey (Node *current_node, int key) 
-{
+bool LinkedList ::searchKey(Node *current_node, int key) {
     if (current_node == NULL) return false;
-    if (current_node -> data == key)
-    {
+    if (current_node->data == key) {
         cout << "Key exist in List" << endl;
         return true;
     }
-    return searchKey (current_node -> next, key);
+    return searchKey(current_node->next, key);
 }
 
-void LinkedList :: popFront(Node **head, Node **tail) 
-{
-    if (*head == *tail)
-    {
+void LinkedList ::popFront(Node **head, Node **tail) {
+    if (*head == *tail) {
         delete *head;
         *tail = *head = NULL;
         return;
@@ -75,21 +64,17 @@ void LinkedList :: popFront(Node **head, Node **tail)
     Node *current_head_next = (*head)->next;
     delete *head;
     *head = current_head_next;
-   
 }
 
-void LinkedList :: popBack(Node **head, Node **tail)
-{
-    if (*head == *tail) 
-    {
+void LinkedList ::popBack(Node **head, Node **tail) {
+    if (*head == *tail) {
         delete *tail;
         *head = *tail = NULL;
         return;
     }
 
     Node *current_node = *head;
-    while (current_node->next != *tail)
-    {
+    while (current_node->next != *tail) {
         current_node = current_node->next;
     }
     delete *tail;
@@ -97,51 +82,39 @@ void LinkedList :: popBack(Node **head, Node **tail)
     // Update tail & set current_node->next to NULL
     *tail = current_node;
     (*tail)->next = NULL;
-
 }
 
-void LinkedList ::  Insert(int data, int pos, Node **head, Node **tail)
-{
+void LinkedList ::Insert(int data, int pos, Node **head, Node **tail) {
     int length = findLength(*head);
 
-    if (pos < 1)
-    {
+    if (pos < 1) {
         cout << "Invalid position" << endl;
-    }
-    else if (pos==1 || *head == NULL)
-    {
-        pushFront(data,head,tail);
-    }
-    else if (pos > length)
-    {
-        pushBack(data,head,tail);
-    }
-    else
-    {
+    } else if (pos == 1 || *head == NULL) {
+        pushFront(data, head, tail);
+    } else if (pos > length) {
+        pushBack(data, head, tail);
+    } else {
         int count = 1;
         Node *current_node = *head;
         Node *previous_node = *head;
         // walk and find position
-        while (count != pos)
-        {
+        while (count != pos) {
             previous_node = current_node;
             current_node = current_node->next;
             count++;
         }
         Node *new_node = new Node(data);
         previous_node->next = new_node;
-        new_node -> next = current_node;
+        new_node->next = current_node;
     }
 }
 
-void LinkedList :: reverseList (Node **head, Node **tail)
-{
+void LinkedList ::reverseList(Node **head, Node **tail) {
     Node *current_node = *head;
     Node *previous_node = NULL;
     Node *next_node;
     *tail = *head;
-    while(current_node != NULL)
-    {
+    while (current_node != NULL) {
         // Store the next node
         next_node = current_node->next;
         // Point current_node->next to previous node
@@ -153,24 +126,21 @@ void LinkedList :: reverseList (Node **head, Node **tail)
     *head = previous_node;
 }
 
-void LinkedList :: deleteList (Node **head, Node **tail) 
-{
+void LinkedList ::deleteList(Node **head, Node **tail) {
     if (*head == NULL) return;
 
-    deleteList (&(*head)->next, tail);
+    deleteList(&(*head)->next, tail);
     delete *head;
 
     *head = *tail = NULL;
 }
 
-int main () 
-{
+int main() {
     LinkedList list;
     Node *head = NULL;
     Node *tail = NULL;
-    int selection,data,position;
-    while(true)
-    {
+    int selection, data, position;
+    while (true) {
         cout << endl;
         cout << "======================" << endl;
         cout << "1. Push at Front" << endl;
@@ -188,42 +158,41 @@ int main ()
         cout << "Enter an option: ";
         cin >> selection;
 
-        switch(selection)
-        {
+        switch (selection) {
             case 1:
                 cout << "Enter data: ";
                 cin >> data;
-                list.pushFront(data,&head,&tail);
+                list.pushFront(data, &head, &tail);
                 break;
             case 2:
                 cout << "Enter data: ";
                 cin >> data;
-                list.pushBack(data,&head,&tail);
+                list.pushBack(data, &head, &tail);
                 break;
             case 3:
-                list.popFront(&head,&tail);
+                list.popFront(&head, &tail);
                 break;
             case 4:
-                list.popBack(&head,&tail);
+                list.popBack(&head, &tail);
                 break;
             case 5:
                 cout << "Enter data: ";
                 cin >> data;
                 cout << "Enter position to insert: ";
                 cin >> position;
-                list.Insert(data,position,&head,&tail);
+                list.Insert(data, position, &head, &tail);
                 break;
             case 6:
                 cout << endl;
                 list.printList(head);
                 break;
             case 7:
-                list.reverseList(&head,&tail);
+                list.reverseList(&head, &tail);
                 break;
             case 8:
                 cout << "Enter element to be searched: ";
                 cin >> data;
-                list.searchKey(head,data);
+                list.searchKey(head, data);
                 break;
             case 9:
                 system("clear");
@@ -237,7 +206,8 @@ int main ()
                 break;
         }
     }
-    exit_loop:list.deleteList(&head, &tail);
-	
+exit_loop:
+    list.deleteList(&head, &tail);
+
     return 0;
 }

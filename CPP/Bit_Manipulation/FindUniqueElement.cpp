@@ -6,8 +6,8 @@ using namespace std;
 // Xor of same numbers will be zero. we will use that property
 int FindUniqueElement(vector<int> v) {
     int result = 0;
-    for (int element: v) {
-        result = result^element;
+    for (int element : v) {
+        result = result ^ element;
     }
     return result;
 }
@@ -18,4 +18,3 @@ int main() {
 
     return 0;
 }
-

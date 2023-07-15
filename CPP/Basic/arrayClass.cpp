@@ -1,20 +1,19 @@
-#include <iostream>
 #include <array>
+#include <iostream>
 
 using namespace std;
 
-void printArray (const array<char,5> &arr) {
-    for (char element: arr) {
+void printArray(const array<char, 5> &arr) {
+    for (char element : arr) {
         cout << element << "\t";
     }
     cout << endl;
 }
 
 int main(int argc, char const *argv[]) {
-
     // Declare an array object
-    array<char,5> arr = {'a','b','c','d','e'};
-    array<char,5> arr2;
+    array<char, 5> arr = {'a', 'b', 'c', 'd', 'e'};
+    array<char, 5> arr2;
 
     // Print array element at index 1
     cout << arr.at(1) << endl;
@@ -45,9 +44,7 @@ int main(int argc, char const *argv[]) {
 
     // Get the array starting pointer
     char *p = arr2.data();
-    cout << "Element at address " << p << " is: " << *p <<endl;
-
+    cout << "Element at address " << p << " is: " << *p << endl;
 
     return 0;
 }
-
