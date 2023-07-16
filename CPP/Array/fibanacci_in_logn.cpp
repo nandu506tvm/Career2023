@@ -3,7 +3,10 @@
 
 using namespace std;
 
-/* Multiply the two matrix, inner loop does the multiplication */
+/* Multiply the two matrix, innermost loop does the multiplication
+ * Inside Innermost loop: For multiplicant matrix a, row is constant
+ * For mulitplier matrix b, column is constant.
+ */
 vector<vector<int>> multiply_matrix(vector<vector<int>> a,
                                     vector<vector<int>> b, int matrix_size) {
     vector<vector<int>> mul_result(matrix_size, vector<int>(matrix_size, 0));
