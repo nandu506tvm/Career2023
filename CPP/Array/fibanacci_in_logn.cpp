@@ -7,8 +7,7 @@ using namespace std;
  * Inside Innermost loop: For multiplicant matrix a, row is constant
  * For mulitplier matrix b, column is constant.
  */
-vector<vector<int>> multiply_matrix(vector<vector<int>> a,
-                                    vector<vector<int>> b, int matrix_size) {
+vector<vector<int>> multiply_matrix(vector<vector<int>> a, vector<vector<int>> b, int matrix_size) {
     vector<vector<int>> mul_result(matrix_size, vector<int>(matrix_size, 0));
     for (int row = 0; row < matrix_size; ++row) {
         for (int column = 0; column < matrix_size; ++column) {
