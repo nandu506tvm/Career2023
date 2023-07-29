@@ -21,7 +21,7 @@ void find_numbers(int number) {
     for (b = a + 1; b * b <= number; ++b) {
         if (number % b == 0) {
             c = number / b;
-            if (c <= b) {  // what if c is equal to zero or 1. set c to zero in that case
+            if (c <= b) {  // what if c is less than b or equal to 1.
                 c = 0;
             }
             break;
