@@ -24,14 +24,6 @@ vector<int> generate_prime(int num) {
             }
         }
     }
-
-    // debug
-    cout << "Debug Prime List:";
-    for (int element : result) {
-        cout << "\t" << element;
-    }
-    cout << endl;
-
     return result;
 }
 
@@ -52,7 +44,8 @@ int main() {
     for (int prime : primes) {
         // Find the smallest multiple within [left, right]
         int smallest_multiple = (left / prime) * prime;
-        // resulted in value less than 'left' due to integer division, add 'prime' to the result
+        // resultant value less than 'left' due to integer division.
+        // Add 'prime' to get the multiple within [left, right]
         if (smallest_multiple < left) {
             smallest_multiple += prime;
         }
@@ -63,7 +56,8 @@ int main() {
             final_result[i - left] = false;
         }
 
-        //  There maybe a case where smallest_multiple itself is prime
+        //  There maybe a case where smallest_multiple itself is prime number
+        // Since we marked it as false in previous step, re-mark it as true
         if (smallest_multiple == prime) {
             final_result[smallest_multiple - left] = true;
         }
