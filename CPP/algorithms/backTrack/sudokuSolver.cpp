@@ -78,8 +78,6 @@ bool solveSudoku(int curr_row, int curr_col) {
 
 int main(int argc, char const *argv[]) {
     bool result = solveSudoku(0, 0);
-    if (result) {
-        printBoard();
-    }
+    printBoard();
     return 0;
 }
