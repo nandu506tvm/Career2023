@@ -13,7 +13,7 @@ Sample Output:  [[],[1],[1,2],[1,2,2],[2],[2,2]]
 
 using namespace std;
 
-void printPowerSet(vector<vector<int>> &final_result) {
+void printPowerSet(set<vector<int>> &final_result) {
     for (auto element : final_result) {
         for (auto ele : element) {
             cout << ele << "\t";
@@ -22,18 +22,13 @@ void printPowerSet(vector<vector<int>> &final_result) {
     }
 }
 
-// Duplicate element detection can also be done using set
-void getPowerSet(vector<int> arr, int index, vector<int> &answer, vector<vector<int>> &final_result) {
+// Using set to avoid duplicate entries
+void getPowerSet(vector<int> arr, int index, vector<int> &answer, set<vector<int>> &final_result) {
     // Base condition
     if (index == arr.size()) {
-        vector<int> sortedVector = answer;
-        sort(sortedVector.begin(), sortedVector.end());
-        for (auto element : final_result) {
-            if (element == sortedVector) {
-                return;
-            }
-        }
-        final_result.push_back(sortedVector);
+        vector<int> sorted_vector = answer;
+        sort(sorted_vector.begin(), sorted_vector.end());
+        final_result.insert(sorted_vector);
         return;
     }
     // Make choices
@@ -48,11 +43,10 @@ void getPowerSet(vector<int> arr, int index, vector<int> &answer, vector<vector<
 
 int main(int argc, char const *argv[]) {
     vector<int> arr = {4, 4, 4, 1, 4};
-    vector<vector<int>> result;
+    set<vector<int>> result;
     vector<int> answer;
 
     getPowerSet(arr, 0, answer, result);
-    sort(result.begin(), result.end());
 
     printPowerSet(result);
 
