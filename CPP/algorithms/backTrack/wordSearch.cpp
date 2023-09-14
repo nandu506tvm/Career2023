@@ -40,6 +40,8 @@ bool findWord(int row, int column, vector<vector<char>> &board, string word, int
     bool left_result = findWord(row, column - 1, board, word, curr_idx + 1);
     bool up_result = findWord(row + 1, column, board, word, curr_idx + 1);
     bool down_result = findWord(row - 1, column, board, word, curr_idx + 1);
+
+    // Backtrack step
     board[row][column] = temp;
 
     return right_result || left_result || up_result || down_result;
