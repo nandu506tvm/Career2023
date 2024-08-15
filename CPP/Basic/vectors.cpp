@@ -29,7 +29,14 @@ double average(vector<int> &salary) {
 }
 
 int main(int argc, char const *argv[]) {
-    vector<int> salary;
+
+    // Initialize the array with size 10 and all elements set to 7.
+    vector<int> salary(10, 7);
+
+    // pop_back the last element
+    salary.pop_back();
+
+    
     salary.push_back(4000);
     salary.push_back(3000);
     salary.push_back(1000);
